@@ -1,0 +1,55 @@
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='PlaygroundApi'*/[0m
+  [1m[35m (56.0ms)[0m  [1m[35mCREATE DATABASE "playground_api_development" ENCODING = 'unicode' /*application='PlaygroundApi'*/[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='PlaygroundApi'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='PlaygroundApi'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3777885912805569390) /*application='PlaygroundApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PlaygroundApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='PlaygroundApi'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-07-02 02:49:38.575068', '2025-07-02 02:49:38.575070') RETURNING "key" /*application='PlaygroundApi'*/[0m
+Migrating to CreatePlaygrounds (20250702024908)
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='PlaygroundApi'*/[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "playgrounds" ("id" bigserial primary key, "name" character varying, "address" character varying, "description" text, "latitude" decimal, "longitude" decimal, "amenities" text, "age_group" character varying, "opening_hours" character varying, "contact_info" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='PlaygroundApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250702024908') RETURNING "version" /*application='PlaygroundApi'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*application='PlaygroundApi'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(3777885912805569390) /*application='PlaygroundApi'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='PlaygroundApi'*/[0m
+  [1m[36mPlayground Load (1.7ms)[0m  [1m[34mSELECT "playgrounds".* FROM "playgrounds" WHERE "playgrounds"."name" = 'Bishan-Ang Mo Kio Park Playground' LIMIT 1 /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:99:in `block (3 levels) in <main>'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mPlayground Create (11.2ms)[0m  [1m[32mINSERT INTO "playgrounds" ("name", "address", "description", "latitude", "longitude", "amenities", "age_group", "opening_hours", "contact_info", "created_at", "updated_at") VALUES ('Bishan-Ang Mo Kio Park Playground', '1384 Ang Mo Kio Ave 1, Singapore 569932', 'A large playground with multiple play areas for different age groups, featuring slides, swings, and climbing structures.', 1.3691, 103.8454, '["slides", "swings", "climbing structures", "sand pit", "water play area"]', '2-12 years', '24 hours', 'NParks Hotline: 1800-471-7300', '2025-07-02 02:51:22.287446', '2025-07-02 02:51:22.287446') RETURNING "id" /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mPlayground Load (0.5ms)[0m  [1m[34mSELECT "playgrounds".* FROM "playgrounds" WHERE "playgrounds"."name" = 'East Coast Park Playground' LIMIT 1 /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:99:in `block (3 levels) in <main>'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mPlayground Create (9.0ms)[0m  [1m[32mINSERT INTO "playgrounds" ("name", "address", "description", "latitude", "longitude", "amenities", "age_group", "opening_hours", "contact_info", "created_at", "updated_at") VALUES ('East Coast Park Playground', 'East Coast Park Service Road, Singapore 449876', 'Beachfront playground with ocean views, featuring pirate ship themed play equipment.', 1.3028, 103.9123, '["pirate ship", "slides", "swings", "climbing nets", "beach access"]', '3-12 years', '24 hours', 'NParks Hotline: 1800-471-7300', '2025-07-02 02:51:22.325161', '2025-07-02 02:51:22.325161') RETURNING "id" /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mPlayground Load (0.3ms)[0m  [1m[34mSELECT "playgrounds".* FROM "playgrounds" WHERE "playgrounds"."name" = 'Botanic Gardens Children''s Garden' LIMIT 1 /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:99:in `block (3 levels) in <main>'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mPlayground Create (4.9ms)[0m  [1m[32mINSERT INTO "playgrounds" ("name", "address", "description", "latitude", "longitude", "amenities", "age_group", "opening_hours", "contact_info", "created_at", "updated_at") VALUES ('Botanic Gardens Children''s Garden', '1 Cluny Rd, Singapore 259569', 'Educational playground within the Singapore Botanic Gardens with nature-themed play equipment.', 1.3151, 103.8162, '["tree house", "water play", "sand pit", "climbing structures", "nature trails"]', '1-12 years', '8:30 AM - 7:00 PM', 'Singapore Botanic Gardens: +65 6471 7138', '2025-07-02 02:51:22.359471', '2025-07-02 02:51:22.359471') RETURNING "id" /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mPlayground Load (0.3ms)[0m  [1m[34mSELECT "playgrounds".* FROM "playgrounds" WHERE "playgrounds"."name" = 'Jurong Lake Gardens Playground' LIMIT 1 /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:99:in `block (3 levels) in <main>'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mPlayground Create (2.9ms)[0m  [1m[32mINSERT INTO "playgrounds" ("name", "address", "description", "latitude", "longitude", "amenities", "age_group", "opening_hours", "contact_info", "created_at", "updated_at") VALUES ('Jurong Lake Gardens Playground', 'Yuan Ching Rd, Singapore 618665', 'Modern playground with inclusive play equipment suitable for children of all abilities.', 1.3387, 103.7228, '["inclusive play equipment", "sensory garden", "water play", "climbing structures", "wheelchair accessible"]', 'All ages', '24 hours', 'NParks Hotline: 1800-471-7300', '2025-07-02 02:51:22.384474', '2025-07-02 02:51:22.384474') RETURNING "id" /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mPlayground Load (0.2ms)[0m  [1m[34mSELECT "playgrounds".* FROM "playgrounds" WHERE "playgrounds"."name" = 'Marina Bay Sands Children''s Playground' LIMIT 1 /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:99:in `block (3 levels) in <main>'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mPlayground Create (5.1ms)[0m  [1m[32mINSERT INTO "playgrounds" ("name", "address", "description", "latitude", "longitude", "amenities", "age_group", "opening_hours", "contact_info", "created_at", "updated_at") VALUES ('Marina Bay Sands Children''s Playground', '10 Bayfront Ave, Singapore 018956', 'Indoor playground with air-conditioned comfort, perfect for rainy days.', 1.2838, 103.8591, '["indoor play area", "ball pit", "slides", "climbing structures", "air-conditioned"]', '2-10 years', '10:00 AM - 10:00 PM', 'Marina Bay Sands: +65 6688 8888', '2025-07-02 02:51:22.407410', '2025-07-02 02:51:22.407410') RETURNING "id" /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='PlaygroundApi'*/[0m
+  ↳ lib/tasks/import_playgrounds.rake:102:in `block (3 levels) in <main>'
